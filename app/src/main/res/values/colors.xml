@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#2ecc71</color>
+    <color name="primary_dark">#27ae60</color>
+    <color name="dark_text">#2c3e50</color>
+    <color name="light_text">#95a5a6</color>
+    <color name="background_light">#f5f7fa</color>
+    <color name="tab_unselected_background">#f1f3f6</color>
+
+    <color name="bounding_box_color">#234567</color>
+    <color name="secondary">#3498db</color>
+    <color name="accent">#e74c3c</color>
+
+    <color name="green_primary">#4CAF50</color>
+    <color name="green_dark">#388E3C</color>
+    <color name="green_light">#C8E6C9</color>
+    <color name="green_accent">#8BC34A</color>
+    <color name="green_text">#2E7D32</color>
+    <color name="background_light_gray">#F5F5F5</color>
+    <color name="divider_gray">#E0E0E0</color>
+
+    <color name="carb_color">#FFC107</color>
+    <color name="protein_color">#03A9F4</color>
+    <color name="fat_color">#F44336</color>
+</resources>

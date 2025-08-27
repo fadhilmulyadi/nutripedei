@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NutriPedia</string>
+    <string name="gpu">GPU</string>
+    <string name="home_title">Nutri<font color="#4CAF50">Pedia</font></string>
+</resources>

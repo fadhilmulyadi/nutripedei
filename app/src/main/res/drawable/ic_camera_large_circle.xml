@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Lingkaran dashed hijau -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent"/>
+            <stroke
+                android:width="2dp"
+                android:color="#2ecc71"
+                android:dashWidth="8dp"
+                android:dashGap="6dp"/>
+            <size
+                android:width="120dp"
+                android:height="120dp"/>
+        </shape>
+    </item>
+
+    <!-- Lingkaran putih agak kecil -->
+    <item
+        android:width="60dp"
+        android:height="60dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Ikon kamera hijau di tengah -->
+    <item
+        android:width="34dp"
+        android:height="34dp"
+        android:gravity="center"
+        android:drawable="@drawable/ic_camera"
+        android:tint="#2ecc71"/>
+</layer-list>
