@@ -2,7 +2,6 @@ package com.surendramaran.yolov8tflite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -31,30 +30,31 @@ class HomeActivity : AppCompatActivity() {
 
         // Menghubungkan TabLayout dengan ViewPager2
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            // Custom view for each tab
-            val customView = LayoutInflater.from(this).inflate(R.layout.custom_tab_item, null)
+            // Gunakan layout khusus untuk tab Scan
+            val customView = if (position == 1) {
+                LayoutInflater.from(this).inflate(R.layout.custom_tab_item_scan, null)
+            } else {
+                LayoutInflater.from(this).inflate(R.layout.custom_tab_item, null)
+            }
+
             val tabIcon = customView.findViewById<ImageView>(R.id.tab_icon)
-            val tabText = customView.findViewById<TextView>(R.id.tab_text)
+            val tabText = customView.findViewById<TextView?>(R.id.tab_text)
 
             when (position) {
-                0 -> { // Riwayat
+                0 -> {
                     tabIcon.setImageResource(R.drawable.ic_history)
-                    tabText.text = "Riwayat"
+                    tabText?.text = "Riwayat"
                 }
-                1 -> { // Scan
-                    tabIcon.setImageResource(R.drawable.ic_scan) // Default scan icon
-                    tabText.text = "Scan"
+                1 -> {
+                    // Ikon dan background sudah diatur di layout custom_tab_item_scan
                 }
-                2 -> { // Pengaturan
+                2 -> {
                     tabIcon.setImageResource(R.drawable.ic_settings)
-                    tabText.text = "Pengaturan"
+                    tabText?.text = "Pengaturan"
                 }
             }
             tab.customView = customView
         }.attach()
-
-        // Set initial selected tab (Scan in the middle)
-        tabLayout.getTabAt(1)?.select() // Select the "Scan" tab (index 1)
 
         // Listener for tab selection changes
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -63,17 +63,12 @@ class HomeActivity : AppCompatActivity() {
                 val tabIcon = customView?.findViewById<ImageView>(R.id.tab_icon)
                 val tabText = customView?.findViewById<TextView>(R.id.tab_text)
 
-                // Change icon color to white and show text
-                tabIcon?.setColorFilter(ContextCompat.getColor(this@HomeActivity, android.R.color.white))
-                tabText?.visibility = View.VISIBLE
-
-                // Special handling for Scan tab icon
-                if (tab.position == 1) { // Scan tab
-                    tabIcon?.setImageResource(R.drawable.ic_camera_large_circle) // Use the special drawable
-                    tabIcon?.setColorFilter(null) // Remove color filter for this drawable
+                if (tab.position != 1) {
+                    tabIcon?.setColorFilter(ContextCompat.getColor(this@HomeActivity, android.R.color.white))
+                    tabText?.visibility = View.VISIBLE
+                    customView?.setBackgroundResource(R.drawable.tab_selected_background)
                 }
 
-                // Smooth transition animation
                 viewPager.setCurrentItem(tab.position, true) // Set smooth transition
             }
 
@@ -82,13 +77,10 @@ class HomeActivity : AppCompatActivity() {
                 val tabIcon = customView?.findViewById<ImageView>(R.id.tab_icon)
                 val tabText = customView?.findViewById<TextView>(R.id.tab_text)
 
-                // Change icon color to green_primary and hide text
-                tabIcon?.setColorFilter(ContextCompat.getColor(this@HomeActivity, R.color.green_primary))
-                tabText?.visibility = View.GONE
-
-                // Reset Scan tab icon to default if unselected
-                if (tab.position == 1) { // Scan tab
-                    tabIcon?.setImageResource(R.drawable.ic_scan) // Reset to default scan icon
+                if (tab.position != 1) {
+                    tabIcon?.setColorFilter(ContextCompat.getColor(this@HomeActivity, R.color.green_primary))
+                    tabText?.visibility = View.GONE
+                    customView?.setBackgroundResource(0)
                 }
             }
 
@@ -97,8 +89,8 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-        // Manually trigger initial selection to apply styles
-        tabLayout.getTabAt(1)?.select() // Select the "Scan" tab (index 1) again to apply styles
+        // Set initial selected tab (Scan in the middle)
+        tabLayout.getTabAt(1)?.select()
     }
 
     // Adapter untuk ViewPager2
