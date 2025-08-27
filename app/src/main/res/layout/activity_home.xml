@@ -64,7 +64,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="30dp"
+        app:cardCornerRadius="50dp"
         app:cardElevation="8dp">
 
         <com.google.android.material.tabs.TabLayout
@@ -72,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
-            app:tabBackground="@drawable/tab_item_selector"
             app:tabGravity="fill"
             app:tabIndicatorHeight="0dp"
             app:tabMode="scrollable"
